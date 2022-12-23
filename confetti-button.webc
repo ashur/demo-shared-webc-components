@@ -1,0 +1,22 @@
+<template>
+	<button @text="text">
+		Confetti
+	</button>
+</template>
+
+<script type="module">
+	import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
+	window.customElements.define( "confetti-button", class extends HTMLElement {
+		connectedCallback()
+		{
+			const tmpl = this.querySelector("template");
+			tmpl.replaceWith(tmpl.content);
+
+			const btn = this.querySelector("button");
+			btn.addEventListener("click", () => {
+				confetti();
+			});
+		}
+	} );
+</script>
